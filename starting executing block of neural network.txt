@@ -1,0 +1,78 @@
+
+#include<vector>
+#include<iostream>
+
+using namespace std;
+
+
+
+class Neuron
+{};
+
+
+
+typedef vector <Neuron> layer; // layer[number of layer =i][number of neurons=j]
+
+class Neural
+{
+public :
+	Neural(const vector <float> &diagram);
+	void input(vector<double> &inputVal) {};
+	void middle1(vector<double> &middleVal1) {};
+	void middle2(vector<double> &middleVal2) {};
+	void output(vector<double> & outputVal) const {};
+
+private :
+	vector<layer> numberLayer;
+};
+
+Neural::Neural(const vector<float> &diagram) 
+{
+	unsigned numlayers = diagram.size(); // numberlayers is the number of layers
+
+	for (unsigned i = 0; i < numlayers; i++)
+	{
+		numberLayer.push_back(layer()); 
+
+		int numberNeuronnextlayer = i == numlayers - 1 ? -1 : 4; // if layer number is -1 for it will have one neuron , then exit else four neurons in each layer
+	
+		for (unsigned j = 0; j <= i; j++) // j is the number of neurons in each layer and one is bias
+		{
+			layer().push_back(Neuron());
+		}
+	}
+
+	for (int i = 0; i < numlayers; i++)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			cout << "life =" <<i<<""<<j<< endl;
+
+		}
+	}
+}
+
+
+int main()
+{
+	vector<float> diagram;
+	diagram.push_back(4);
+	diagram.push_back(3);
+	diagram.push_back(2);
+	diagram.push_back(1);
+	Neural myNeural(diagram);
+
+	vector<double > inputVal;
+	myNeural.input(inputVal);
+
+	vector<double > middleVal1;
+	myNeural.middle1(middleVal1);
+
+//	vector<double > middleVal2;
+//	myNeural.middle2(middleVal2);
+
+	vector<double > outputVal;
+	myNeural.output(outputVal);
+
+
+}
